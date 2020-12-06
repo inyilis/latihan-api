@@ -1,0 +1,5 @@
+DBNAME      = your DB name
+DBPASSWORD  = your DB password
+DBPORT      = your DB port
+DBHOST      = your DB host
+DBUSER      = your DB user

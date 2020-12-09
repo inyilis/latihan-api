@@ -8,6 +8,9 @@ const respon = (res, status, result = '') => {
     case 201:
       desc = 'Created';
       break;
+    case 209:
+      desc = 'Incomplete Data';
+      break;
     case 400:
       desc = 'Bad Request';
       break;

@@ -13,6 +13,10 @@ category.get = async (req, res) => {
 
 category.add = async (req, res) => {
   try {
+    if (Object.keys(req.body).length !== 1) {
+      const result = { msg: 'Data tidak lengkap, silahkan isi kembali !' };
+      return respon(res, 209, result);
+    }
     const result = await model.addCategory(req.body);
     return respon(res, 201, result);
   } catch (error) {
@@ -22,6 +26,10 @@ category.add = async (req, res) => {
 
 category.update = async (req, res) => {
   try {
+    if (Object.keys(req.body).length !== 2) {
+      const result = { msg: 'Data tidak lengkap, silahkan isi kembali !' };
+      return respon(res, 209, result);
+    }
     const result = await model.updateCategory(req.body);
     return respon(res, 201, result);
   } catch (error) {

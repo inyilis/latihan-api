@@ -13,6 +13,10 @@ products.get = async (req, res) => {
 
 products.add = async (req, res) => {
   try {
+    if (Object.keys(req.body).length !== 4) {
+      const result = { msg: 'Data tidak lengkap, silahkan isi kembali !' };
+      return respon(res, 209, result);
+    }
     const result = await model.addProduct(req.body);
     return respon(res, 201, result);
   } catch (error) {
@@ -22,6 +26,10 @@ products.add = async (req, res) => {
 
 products.update = async (req, res) => {
   try {
+    if (Object.keys(req.body).length !== 5) {
+      const result = { msg: 'Data tidak lengkap, silahkan isi kembali !' };
+      return respon(res, 209, result);
+    }
     const result = await model.updateProduct(req.body);
     return respon(res, 201, result);
   } catch (error) {

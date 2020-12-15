@@ -17,8 +17,8 @@ products.get = () => new Promise((resolve, reject) => {
 });
 
 products.addProduct = (data) => new Promise((resolve, reject) => {
-  db.query(`INSERT INTO public.products(nama, harga, stok, kategori_id)
-                    VALUES ('${data.nama}', ${data.harga}, ${data.stok}, ${data.kategori_id})`)
+  db.query(`INSERT INTO public.products(nama, harga, url_img, kategori_id)
+                    VALUES ('${data.nama}', ${data.harga}, '${data.url_img}', ${data.kategori_id})`)
     .then(() => {
       resolve(data);
     })
@@ -28,7 +28,7 @@ products.addProduct = (data) => new Promise((resolve, reject) => {
 });
 
 products.updateProduct = (data) => new Promise((resolve, reject) => {
-  db.query(`UPDATE public.products SET nama='${data.nama}', harga=${data.harga}, stok=${data.stok}, kategori_id=${data.kategori_id} WHERE id = ${data.id}`)
+  db.query(`UPDATE public.products SET nama='${data.nama}', harga=${data.harga}, url_img='${data.url_img}', kategori_id=${data.kategori_id} WHERE id = ${data.id}`)
     .then(() => {
       resolve(data);
     })

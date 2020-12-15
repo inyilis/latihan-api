@@ -2,10 +2,33 @@ const search = {};
 const model = require('../Models/search');
 const respon = require('../Helpers/respon');
 
+search.getName = async (req, res) => {
+  try {
+    const Query = `
+        SELECT public.products.id, public.products.nama, public.products.harga, public.products.url_img, public.category.tipe AS "kategori"
+        FROM public.products 
+        JOIN public.category ON public.products.kategori_id = public.category.id
+        `;
+
+    let queryData = '';
+
+    if (Object.keys(req.params).length === 0) {
+      queryData = '';
+    } else {
+      queryData = `WHERE nama LIKE '%${req.params.nama}%'`;
+    }
+
+    const result = await model.get(Query, queryData);
+    return respon(res, 200, result);
+  } catch (error) {
+    return respon(res, 500, error);
+  }
+};
+
 search.get = async (req, res) => {
   try {
     const Query = `
-        SELECT public.products.id, public.products.nama, public.products.harga, public.category.tipe AS "kategori"
+        SELECT public.products.id, public.products.nama, public.products.harga, public.products.url_img, public.category.tipe AS "kategori"
         FROM public.products 
         JOIN public.category ON public.products.kategori_id = public.category.id
         `;
@@ -66,12 +89,15 @@ search.get = async (req, res) => {
           queryData += ' harga DESC';
         }
       }
-    } else if (Object.keys(req.query).length === 0) {
-      queryData = '';
     } else {
-      queryData = `WHERE nama LIKE '%${req.query.nama}%'`;
+      queryData = '';
     }
-
+    // else if (Object.keys(req.query).length === 0) {
+    //   queryData = '';
+    // } else {
+    //   queryData = `WHERE nama LIKE '%${req.query.nama}%'`;
+    // }
+    // console.log(`${Query}${queryData}`);
     // Kirim Query ke Model
     const result = await model.get(Query, queryData);
     return respon(res, 200, result);

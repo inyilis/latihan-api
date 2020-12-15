@@ -4,12 +4,14 @@ const express = require('express');
 const server = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const cors = require('cors');
 const routes = require('./src/main');
 const db = require('./src/Configs/db');
 
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 server.use(morgan('dev'));
+server.use(cors());
 server.use(routes);
 
 db.connect()

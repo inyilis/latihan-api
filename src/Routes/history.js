@@ -1,9 +1,10 @@
 const express = require('express');
 
 const routes = express.Router();
-const controller = require('../Controllers/search');
+const controller = require('../Controllers/history');
 
 routes.get('/', controller.get);
-routes.get('/:nama', controller.getName);
+routes.post('/', controller.add);
+routes.delete('/:id', controller.del);
 
 module.exports = routes;

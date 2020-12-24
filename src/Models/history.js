@@ -1,4 +1,5 @@
 const db = require('../Configs/db');
+const logger = require('../Helpers/logger');
 
 const history = {};
 
@@ -12,6 +13,7 @@ history.get = () => new Promise((resolve, reject) => {
       }
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });
@@ -22,6 +24,7 @@ history.addHistory = (data) => new Promise((resolve, reject) => {
       resolve(data);
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });
@@ -32,6 +35,7 @@ history.delHistory = (id) => new Promise((resolve, reject) => {
       resolve('Deleted');
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });

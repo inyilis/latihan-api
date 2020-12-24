@@ -1,6 +1,7 @@
 const search = {};
 const model = require('../Models/search');
 const respon = require('../Helpers/respon');
+const logger = require('../Helpers/logger');
 
 search.getName = async (req, res) => {
   try {
@@ -21,6 +22,7 @@ search.getName = async (req, res) => {
     const result = await model.get(Query, queryData);
     return respon(res, 200, result);
   } catch (error) {
+    logger.error(error);
     return respon(res, 500, error);
   }
 };
@@ -102,6 +104,7 @@ search.get = async (req, res) => {
     const result = await model.get(Query, queryData);
     return respon(res, 200, result);
   } catch (error) {
+    logger.error(error);
     return respon(res, 500, error);
   }
 };

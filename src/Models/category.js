@@ -1,4 +1,5 @@
 const db = require('../Configs/db');
+const logger = require('../Helpers/logger');
 
 const category = {};
 
@@ -12,6 +13,7 @@ category.get = () => new Promise((resolve, reject) => {
       }
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });
@@ -22,6 +24,7 @@ category.addCategory = (data) => new Promise((resolve, reject) => {
       resolve(data);
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });
@@ -32,6 +35,7 @@ category.updateCategory = (data) => new Promise((resolve, reject) => {
       resolve(data);
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });
@@ -42,6 +46,7 @@ category.delCategory = (id) => new Promise((resolve, reject) => {
       resolve('Deleted');
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });

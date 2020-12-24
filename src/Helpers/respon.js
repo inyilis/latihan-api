@@ -17,6 +17,9 @@ const respon = (res, status, result = '') => {
     case 401:
       desc = 'Unauthorized';
       break;
+    case 404:
+      desc = 'Not Found';
+      break;
     case 500:
       desc = 'Internal Server Error';
       break;

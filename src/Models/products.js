@@ -1,9 +1,10 @@
 const db = require('../Configs/db');
+const logger = require('../Helpers/logger');
 
 const products = {};
 
 products.get = () => new Promise((resolve, reject) => {
-  db.query('SELECT * FROM public.products ORDER BY id ASC')
+  db.query('SELECT * FROM public.products ORDER BY id DESC')
     .then((res) => {
       if (res.rows.length === 0) {
         resolve({ msg: 'Data Kosong' });
@@ -12,6 +13,7 @@ products.get = () => new Promise((resolve, reject) => {
       }
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });
@@ -23,6 +25,7 @@ products.addProduct = (data) => new Promise((resolve, reject) => {
       resolve(data);
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });
@@ -33,6 +36,7 @@ products.updateProduct = (data) => new Promise((resolve, reject) => {
       resolve(data);
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });
@@ -43,6 +47,7 @@ products.delProduct = (id) => new Promise((resolve, reject) => {
       resolve('Deleted');
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });

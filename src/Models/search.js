@@ -1,4 +1,5 @@
 const db = require('../Configs/db');
+const logger = require('../Helpers/logger');
 
 const search = {};
 
@@ -14,6 +15,7 @@ search.getName = (query, data) => new Promise((resolve, reject) => {
       }
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });
@@ -30,6 +32,7 @@ search.get = (query, data) => new Promise((resolve, reject) => {
       }
     })
     .catch((err) => {
+      logger.error(err);
       reject(err);
     });
 });

@@ -30,7 +30,7 @@ category.add = async (req, res) => {
 
 category.update = async (req, res) => {
   try {
-    if (Object.keys(req.body).length !== 1 || req.body.tipe === '' || req.body.tipe === null) {
+    if (Object.keys(req.body).length !== 2 || req.body.tipe === '' || req.body.tipe === null) {
       logger.error('Data tidak lengkap, silahkan isi kembali !');
       const result = { msg: 'Data tidak lengkap, silahkan isi kembali !' };
       return respon(res, 401, result);
